@@ -787,3 +787,213 @@ tbody tr:hover {
         overflow-y: auto;
     }
 }
+/* =========================
+   DASAR
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR DESKTOP
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    z-index: 1000;
+}
+
+
+/* =========================
+   CONTENT DESKTOP
+========================= */
+
+.main-content {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    min-height: 100vh;
+    padding: 30px;
+}
+
+
+/* =========================
+   KARTU STATISTIK
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================
+   TABEL
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+        padding: 20px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================
+   HP
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Sidebar menjadi bagian atas */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    /* Konten kembali memenuhi layar */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* Statistik menjadi 1 kolom */
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    /* Header */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    /* Tombol */
+    .header button {
+        width: auto;
+        min-width: 180px;
+    }
+
+    /* Kotak daftar pasien */
+    .patient-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Pencarian */
+    .search-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Tabel bisa digeser */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 900px;
+    }
+}
+
+
+/* =========================
+   HP KECIL
+========================= */
+
+@media (max-width: 480px) {
+
+    .main-content {
+        padding: 12px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .patient-container {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .header button {
+        width: 100%;
+    }
+
+    /* Tabel tetap bisa digeser */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
