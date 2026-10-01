@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tugas vino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-hospital"></i>
+            </div>
+
+            <div>
+                <h2>RS Game Lab</h2>
+                <span>Indonesia</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#" class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="#pasien">
+                <i class="fa-solid fa-users"></i>
+                Data Pasien
+            </a>
+
+            <a href="#tambah">
+                <i class="fa-solid fa-user-plus"></i>
+                Tambah Pasien
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <i class="fa-solid fa-shield-heart"></i>
+            <div>
+                <strong>Sistem Klinik</strong>
+                <small>Versi 1.0</small>
+            </div>
+        </div>
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div>
+                <p class="welcome">Sistem Informasi Rumah Sakit</p>
+                <h1>Data Pasien</h1>
+            </div>
+
+            <button class="btn-primary" id="openFormBtn">
+                <i class="fa-solid fa-plus"></i>
+                Tambah Pasien
+            </button>
+        </header>
+
+
+        <!-- STATISTIC -->
+        <section class="stats">
+
+            <div class="stat-card blue">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+                    <span>Total Pasien</span>
+                    <h2 id="totalPasien">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card green">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div>
+                    <span>Pasien Terdaftar</span>
+                    <h2 id="pasienTerdaftar">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card orange">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-hospital-user"></i>
+                </div>
+
+                <div>
+                    <span>Rawat Inap</span>
+                    <h2 id="rawatInap">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CONTENT -->
+        <section class="content-card" id="pasien">
+
+            <div class="content-header">
+                <div>
+                    <h2>Daftar Pasien</h2>
+                    <p>Kelola data pasien rumah sakit</p>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-search"></i>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Cari ID pasien..."
+                    >
+                </div>
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Pasien</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Penyakit</th>
+                            <th>Nomor Ruang</th>
+                            <th>BPJS</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="patientTable">
+                        <!-- Data dari JavaScript -->
+                    </tbody>
+
+                </table>
+
+                <div id="emptyState" class="empty-state">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <h3>Belum ada data pasien</h3>
+                    <p>Silakan tambahkan pasien baru.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL TAMBAH PASIEN -->
+    <div class="modal" id="patientModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle">Tambah Pasien</h2>
+                    <p>Masukkan informasi pasien</p>
+                </div>
+
+                <button class="close-btn" id="closeModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+
+            <form id="patientForm">
+
+                <input type="hidden" id="editIndex">
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>ID Pasien</label>
+
+                        <input
+                            type="text"
+                            id="idPasien"
+                            placeholder="Contoh: P002"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Nama Pasien</label>
+
+                        <input
+                            type="text"
+                            id="nama"
+                            placeholder="Nama lengkap"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group full">
+                        <label>Alamat</label>
+
+                        <input
+                            type="text"
+                            id="alamat"
+                            placeholder="Alamat lengkap"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Penyakit</label>
+
+                        <input
+                            type="text"
+                            id="penyakit"
+                            placeholder="Contoh: Flu"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Nomor Ruang</label>
+
+                        <input
+                            type="text"
+                            id="nomorRuang"
+                            placeholder="Contoh: R-204"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>BPJS</label>
+
+                        <select id="bpjs" required>
+                            <option value="">Pilih Status</option>
+                            <option value="Kelas I">Kelas I</option>
+                            <option value="Kelas II">Kelas II</option>
+                            <option value="Kelas III">Kelas III</option>
+                            <option value="Tidak Menggunakan">
+                                Tidak Menggunakan
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Tanggal Masuk</label>
+
+                        <input
+                            type="date"
+                            id="tanggalMasuk"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Tanggal Keluar</label>
+
+                        <input
+                            type="date"
+                            id="tanggalKeluar"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="cancelBtn"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Simpan Pasien
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">
+            Data berhasil disimpan
+        </span>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
